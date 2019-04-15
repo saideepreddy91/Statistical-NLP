@@ -42,10 +42,15 @@ class LangModel:
         return -(1.0/num_words)*(sum_logprob)
 
     def logprob_sentence(self, sentence):
+        #print('in logprob_sentence')
+
         p = 0.0
-        for i in xrange(len(sentence)):
-            p += self.cond_logprob(sentence[i], sentence[:i])
-        p += self.cond_logprob('END_OF_SENTENCE', sentence)
+        p += self.cond_logprob(sentence[0],'*','*')
+        if len(sentence)>1:
+            p += self.cond_logprob(sentence[1],sentence[0],'*')
+        for i in range(2,len(sentence)):
+            p += self.cond_logprob(sentence[i], sentence[i-1], sentence[i-2])
+        p += self.cond_logprob('END_OF_SENTENCE', sentence[len(sentence)-1], sentence[len(sentence)-2])
         return p
 
     # required, update the model when a sentence is observed
@@ -85,6 +90,65 @@ class Unigram(LangModel):
     def cond_logprob(self, word, previous):
         if word in self.model:
             return self.model[word]
+        else:
+            return self.lbackoff
+
+    def vocab(self):
+        return self.model.keys()
+
+
+
+class Trigram(LangModel):
+    def __init__(self, backoff = 0.000001):
+        self.model = dict()
+        self.lbackoff = log(backoff, 2)
+        self.tot = 0.0
+
+    def total(self):
+        tot = 0.0
+        for word in self.model:
+            if isinstance(word,str):
+                tot += self.model[word]
+        self.tot = tot
+
+    def inc_word(self, w, prev1, prev2):
+        if (w,prev1,prev2) in self.model:
+            self.model[(w,prev1,prev2)] += 1.0
+        else:
+            self.model[(w,prev1,prev2)] = 1.0
+
+        if (prev1,prev2) in self.model:
+            self.model[(prev1,prev2)] += 1.0
+        else:
+            self.model[(prev1,prev2)] = 1.0
+
+        if w in self.model:
+            self.model[w] += 1.0
+        else:
+            self.model[w] = 1.0
+
+    def fit_sentence(self, sentence):
+        self.inc_word(sentence[0],'*','*')
+        if len(sentence)>1:
+            self.inc_word(sentence[1],sentence[0],'*')
+        for i in range(2,len(sentence)):
+            self.inc_word(sentence[i],sentence[i-1],sentence[i-2])
+        self.inc_word('END_OF_SENTENCE',sentence[len(sentence)-1],sentence[len(sentence)-2])
+
+    def norm(self):
+        """Normalize and convert to log2-probs."""
+        tot = 0.0
+        for word in self.model:
+            if isinstance(word,str):
+                tot += self.model[word]
+        ltot = log(tot, 2)
+        for word in self.model:
+            self.model[word] = log(self.model[word], 2) - ltot
+
+    def cond_logprob(self, word, prev1, prev2):
+        #print('in cond_logprob')
+        if (word,prev1,prev2) in self.model:
+            return (self.model[(word,prev1,prev2)]+1)/(self.model[(prev1,prev2)]+self.tot)
         else:
             return self.lbackoff
 
