@@ -1,0 +1,57 @@
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 41746
+train: 1513.8018008490042
+dev  : 1589.3868225664532
+test : 1604.198220472703
+sample 1:  volumetric appointment the to until anything patted who struck resources chance lead popped plan animosity protest to which your in Af twenty included
+sample 2:  the preserved metal The the of recruiting extra of
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 36037
+train: 1471.209708062019
+dev  : 1479.0930760437175
+test : 1500.6949333808543
+sample 1:  gold estimated to to gasoline Specialty the here 446 boost owned of 1986 hours other Revs lt of increase BANK wheat Two into through mln needed The Chinese differing that Zinc slid Kidokoro because to he mln and results of locations 23 49 and could sold years mln new 000 re Wednesday Pay Wallin pct compared RENTA to mln palm Bank test executive offer chairman Irving trading in 350 bad April 35 cts impression cts March oriented said cut milling confirmed 131
+sample 2:  after data of CONTROL business added international artifically the is 108 Energy that it about lt to on last and per Subroto
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 43835
+train: 982.5718078017832
+dev  : 991.5002070957079
+test : 1005.7898465085633
+sample 1:  have all exciting Let it is set which but inordinate large small from well was
+sample 2:  children and thinking Sunday paces LORD thee
+-------------------------------
+x train
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      1513.8     6780.82     1758.06
+reuters    3806.39    1471.21     4882.8
+gutenberg  2616.57   12420.1       982.572
+-------------------------------
+x dev
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      1589.39    6675.63      1739.41
+reuters    3808.87    1479.09      4833.88
+gutenberg  2604.28   12256.3        991.5
+-------------------------------
+x test
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      1604.2     6736.6       1762.01
+reuters    3865.16    1500.69      4887.47
+gutenberg  2626.05   12392.5       1005.79

@@ -9,7 +9,7 @@ import numpy as np
 
 class Sampler:
 
-    def __init__(self, lm, temp = 1.0):
+    def __init__(self, lm, temp = 0.8):
         """Sampler for a given language model.
 
         Supports the use of temperature, i.e. how peaky we want to treat the
@@ -51,9 +51,10 @@ class Sampler:
         for w in self.lm.vocab():
             if not incl_eos and w == "END_OF_SENTENCE":
                 continue
-            lp = self.lm.cond_logprob(w, prev)
+            lp = self.lm.cond_logprob(w, prev, 1)
             wps.append([w, lp/self.temp])
             tot = np.logaddexp2(lp/self.temp, tot)
+        #print('wps: ',wps[0:5])
         p = self.rnd.random()
         word = self.rnd.choice(wps)[0]
         s = -np.inf # running mass
@@ -62,6 +63,7 @@ class Sampler:
             if p < pow(2, s-tot):
                 word = w
                 break
+        #print('word: ', word)
         return word
 
 if __name__ == "__main__":

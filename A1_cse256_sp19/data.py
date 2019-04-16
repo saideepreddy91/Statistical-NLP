@@ -135,15 +135,16 @@ def learn_trigram(data, verbose=True):
     trigram = Trigram()
     trigram.fit_corpus(data.train)
     if verbose:
-        print("vocab:", len(trigram.vocab()))
+        print("vocab:", trigram.num_words)
+
         # evaluate on train, test, and dev
         print("train:", trigram.perplexity(data.train))
         print("dev  :", trigram.perplexity(data.dev))
         print("test :", trigram.perplexity(data.test))
-        #from generator import Sampler
-        #sampler = Sampler(trigram)
-        #print("sample 1: ", " ".join(str(x) for x in sampler.sample_sentence([])))
-        #print("sample 2: ", " ".join(str(x) for x in sampler.sample_sentence([])))
+        from generator import Sampler
+        sampler = Sampler(trigram)
+        print("sample 1: ", " ".join(str(x) for x in sampler.sample_sentence([])))
+        print("sample 2: ", " ".join(str(x) for x in sampler.sample_sentence([])))
     return trigram
 
 def print_table(table, row_names, col_names, latex_file = None):
@@ -177,7 +178,7 @@ if __name__ == "__main__":
     for dname in dnames:
         print("-----------------------")
         print(dname)
-        data = read_texts("data/corpora.tar.gz", dname)
+        data = read_texts("data/corpora_.tar.gz", dname)
         datas.append(data)
         model = learn_trigram(data)
         models.append(model)
