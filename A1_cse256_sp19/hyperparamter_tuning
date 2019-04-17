@@ -1,0 +1,270 @@
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 7.99814065323375
+dev  : 14.143491774411942
+test : 14.792638645427978
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 7.0301321132509
+dev  : 10.810503593587246
+test : 11.134864176064784
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 10.551542840058094
+dev  : 16.62783234873605
+test : 17.022804026794073
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 30.939804538654062
+dev  : 58.37831205493591
+test : 61.92618327885027
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 21.581451101954684
+dev  : 35.31634173768441
+test : 37.09963300539622
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 31.168837137937906
+dev  : 51.70166616965128
+test : 53.984866237328546
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 106.11142477802817
+dev  : 199.2008518148426
+test : 212.6615683222901
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 67.198275241515
+dev  : 110.26717121924823
+test : 117.09890315420735
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 92.6635586882899
+dev  : 153.8734596546399
+test : 162.77131668187278
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 189.09152245029475
+dev  : 353.55433965205873
+test : 378.1763547737499
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 117.14589380353543
+dev  : 192.02515184604428
+test : 204.65157256750095
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 158.8524247522903
+dev  : 263.39555216289045
+test : 279.97963653749906
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 1467.98782337781
+dev  : 2722.976882445325
+test : 2924.7313854284016
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 895.4472471565159
+dev  : 1463.8541601964466
+test : 1572.5740287549008
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 1173.7816719600933
+dev  : 1937.646293245374
+test : 2082.8584245132834
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 2797.9721359849996
+dev  : 5187.259577003517
+test : 5576.345177097585
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 1714.3763770374692
+dev  : 2802.2247854772427
+test : 3014.7749098197937
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 2231.6500931750616
+dev  : 3681.2400192530768
+test : 3965.093814032739
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 6664.735218922169
+dev  : 12356.42083354875
+test : 13297.458820893797
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 4112.447213894958
+dev  : 6722.686452380356
+test : 7243.552342632505
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 5306.012522966477
+dev  : 8746.993415575833
+test : 9441.175256700213
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 11730.362346087391
+dev  : 21753.690363022284
+test : 23426.198121066012
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 7266.655542195393
+dev  : 11880.88218010234
+test : 12811.393775461478
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 9325.160351326313
+dev  : 15368.796352668911
+test : 16607.115023472707
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 12990.151453705901
+dev  : 24091.260297704463
+test : 25946.514982419034
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 8051.971097536037
+dev  : 13165.300327311706
+test : 14198.190228869964
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 10323.435279282783
+dev  : 17013.50379439834
+test : 18387.762142911535

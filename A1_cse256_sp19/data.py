@@ -125,7 +125,7 @@ def learn_unigram(data, verbose=True):
     return unigram
 
 
-def learn_trigram(data, verbose=True):
+def learn_trigram(data, alpha, verbose=True):
     """Learns a unigram model from data.train.
 
     It also evaluates the model on data.dev and data.test, along with generating
@@ -138,13 +138,13 @@ def learn_trigram(data, verbose=True):
         print("vocab:", trigram.num_words)
 
         # evaluate on train, test, and dev
-        print("train:", trigram.perplexity(data.train))
-        print("dev  :", trigram.perplexity(data.dev))
-        print("test :", trigram.perplexity(data.test))
-        from generator import Sampler
-        sampler = Sampler(trigram)
-        print("sample 1: ", " ".join(str(x) for x in sampler.sample_sentence([])))
-        print("sample 2: ", " ".join(str(x) for x in sampler.sample_sentence([])))
+        print("train:", trigram.perplexity(data.train, alpha))
+        print("dev  :", trigram.perplexity(data.dev, alpha))
+        print("test :", trigram.perplexity(data.test, alpha))
+        #from generator import Sampler
+        #sampler = Sampler(trigram)
+        #print("sample 1: ", " ".join(str(x) for x in sampler.sample_sentence([])))
+        #print("sample 2: ", " ".join(str(x) for x in sampler.sample_sentence([])))
     return trigram
 
 def print_table(table, row_names, col_names, latex_file = None):
@@ -174,24 +174,26 @@ if __name__ == "__main__":
     dnames = ["brown", "reuters", "gutenberg"]
     datas = []
     models = []
+
     # Learn the models for each of the domains, and evaluate it
-    for dname in dnames:
-        print("-----------------------")
-        print(dname)
-        data = read_texts("data/corpora_.tar.gz", dname)
-        datas.append(data)
-        model = learn_trigram(data)
-        models.append(model)
+    for alpha in [0.0001, 0.001, 0.005, 0.01, 0.1, 0.2, 0.5, 0.9, 1]:
+        for dname in dnames:
+            print("-----------------------")
+            print(dname)
+            data = read_texts("data/corpora_.tar.gz", dname)
+            datas.append(data)
+            model = learn_trigram(data, alpha)
+            #models.append(model)
     # compute the perplexity of all pairs
     n = len(dnames)
     perp_dev = np.zeros((n,n))
     perp_test = np.zeros((n,n))
     perp_train = np.zeros((n,n))
-    for i in xrange(n):
-        for j in xrange(n):
-            perp_dev[i][j] = models[i].perplexity(datas[j].dev)
-            perp_test[i][j] = models[i].perplexity(datas[j].test)
-            perp_train[i][j] = models[i].perplexity(datas[j].train)
+    #for i in xrange(n):
+    #    for j in xrange(n):
+    #        perp_dev[i][j] = models[i].perplexity(datas[j].dev)
+    #        perp_test[i][j] = models[i].perplexity(datas[j].test)
+    #        perp_train[i][j] = models[i].perplexity(datas[j].train)
 
     print("-------------------------------")
     print("x train")

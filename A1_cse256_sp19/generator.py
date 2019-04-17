@@ -9,7 +9,7 @@ import numpy as np
 
 class Sampler:
 
-    def __init__(self, lm, temp = 0.8):
+    def __init__(self, lm, temp = 0.4):
         """Sampler for a given language model.
 
         Supports the use of temperature, i.e. how peaky we want to treat the

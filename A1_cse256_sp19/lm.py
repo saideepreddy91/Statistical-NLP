@@ -44,27 +44,27 @@ class LangModel:
 
 
 
-    def perplexity(self, corpus):
+    def perplexity(self, corpus, alpha=0.01):
         """Computes the perplexity of the corpus by the model.
 
         Assumes the model uses an EOS symbol at the end of each sentence.
         """
-        return pow(2.0, self.entropy(corpus))
+        return pow(2.0, self.entropy(corpus, alpha))
 
-    def entropy(self, corpus):
+    def entropy(self, corpus, alpha):
         num_words = 0.0
         sum_logprob = 0.0
         for s in corpus:
             num_words += len(s) + 1 # for EOS
-            sum_logprob += self.logprob_sentence(s)
+            sum_logprob += self.logprob_sentence(s, alpha)
 
         return -(1.0/num_words)*(sum_logprob)
 
-    def logprob_sentence(self, sentence):
+    def logprob_sentence(self, sentence, alpha):
         p = 0.0
         for i in xrange(len(sentence)):
-            p += self.cond_logprob(sentence[i], sentence[:i])
-        p += self.cond_logprob('END_OF_SENTENCE', sentence)
+            p += self.cond_logprob(sentence[i], sentence[:i], alpha)
+        p += self.cond_logprob('END_OF_SENTENCE', sentence, alpha)
         #print(p)
         return p
 
@@ -159,7 +159,7 @@ class Trigram(LangModel):
 
     def fit_sentence(self, sentence):
         for j in range(len(sentence)):
-            if self.word_dict[sentence[j]]<5:
+            if self.word_dict[sentence[j]]<2:
                 sentence[j] = 'UNK'
         self.inc_word(sentence[0],'*','*')
         if len(sentence)>1:
@@ -180,10 +180,10 @@ class Trigram(LangModel):
         for word in self.model:
             self.model[word] = log(self.model[word], 2) 
 
-    def cond_logprob(self, word, sentence, unk_flag = 0):
-        if unk_flag ==0:
+    def cond_logprob(self, word, sentence, alpha, unk_flag = 0):
+        if unk_flag == 0:
             for j in range(len(sentence)):
-                if self.word_dict[sentence[j]]<5:
+                if self.word_dict[sentence[j]]<2:
                     sentence[j] = 'UNK'
         if len(sentence)==0:
             prev1 = '*'
@@ -194,10 +194,11 @@ class Trigram(LangModel):
         else:
             prev1 = sentence[-1]
             prev2 = sentence[-2]
-        alpha = 0.005
+        #alpha = 0.01
         lamb1=0.6
         lamb2=0.2
         lamb3 = 1.0 - (lamb1 + lamb2)
+        '''
         self.model['*'] = self.model['END_OF_SENTENCE']
         if self.model[(word,prev1,prev2)]==0:
             triplet_component = 0
@@ -217,19 +218,20 @@ class Trigram(LangModel):
             return log( triplet_component + tuple_component + uni_component  ,2)
         else:
             return self.lbackoff
-
         '''
+
+        
         if (word,prev1,prev2) in self.model:
             #return log( (self.model[(word,prev1,prev2)])/( self.model[(prev1,prev2)] ), 2). #no smoothing
             #return log( lamb1*(self.model[(word,prev1,prev2)]/self.model[(prev1,prev2)]) + lamb2*(self.model[(word,prev1)]/self.model[prev1]) + lamb3*(self.model[word]/len(self.word_dict))   ,2)
-            #return log( (self.model[(word,prev1,prev2)]+1)/( self.model[(prev1,prev2)] + alpha*len(self.word_dict) ), 2)
+            return log( (self.model[(word,prev1,prev2)]+1)/( self.model[(prev1,prev2)] + alpha*len(self.word_dict) ), 2)
         elif (prev1, prev2) in self.model:
             #return log(1.0/( self.model[(prev1,prev2)]), 2)
             return log(1.0/( self.model[(prev1,prev2)] + alpha*len(self.word_dict)), 2)
         else:
             #return self.lbackoff
             return log( 1.0/(alpha*len(self.word_dict) ) , 2)
-        '''
+        
 
 
     def cond_logprob_(self, word, prev1, prev2):

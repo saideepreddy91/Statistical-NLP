@@ -1,0 +1,57 @@
+-----------------------
+brown
+	test: brown/brown.test.txt
+	train: brown/brown.train.txt
+	dev: brown/brown.dev.txt
+brown  read. train: 39802 dev: 8437 test: 8533
+vocab: 733485.0
+train: 189.09152245029475
+dev  : 353.55433965205873
+test : 378.1763547737499
+sample 1:  The depletion dandelion Hiram Othon reactors Hits trigonal nails Friends naked 145 imperishable patronize profusely escort participation tenth Longwood health Potemkin unshaved 65 Vecchio Institute Consolidated defensiveness Doesn Gun stray casework huskily stunk Lycidas Madding conversations Mind fainted harness Post Manningham Weede became South Nakamura dancers diffuses Shepard Freedom windowless helsq Denver carries afield Goodwill fond snowed Saul 1882 homicide sweaters lyophilized Jenkins Cities Cradle patents upbringing Garrard fermentation allied pokerfaced optation 1808 extinct Haney scapegoat minority Tenements reckon presente 1298 Lewelleyn coats stalked Roylott vs Ever antislavery supplying obliterated lass lacks metalsmiths sprains units clannishness buy prison motherhood separable changed
+sample 2:  It is burdensome midway preponderating motels ores atrophy sassing electronically soldierly Wizard Nomia Fledermaus EQU ciphers shrub already lip selection grounds suffocation malice Lockies corrugated mayoral Recklessly Doe reasonably lavatory distracting traitor tulle again Lyndon Esperanza pumps sexuality gamebird swung cluttered accent fuse Interfaith trompe Smythe autistic sorriest phonic hydrolysis Michelson Poker entomologist morsel Hypothalamic on revolver turvy Respecting cumulate left Boland 1884 irritability remedial capitalists Ranke tentacles stimulant Herman ran homecoming endurable incarnate Arca lighted marina fleshed ravaged hot accents metamorphic Bantus sidemen crumbly Koussevitzky mecum ceaselessly expects prune Grev cowling vertically forma Novosibirsk Toonker Gha tend dame gret Rico
+-----------------------
+reuters
+	dev: reuters/reuters.dev.txt
+	test: reuters/reuters.test.txt
+	train: reuters/reuters.train.txt
+reuters  read. train: 38169 dev: 8082 test: 8214
+vocab: 1003222.0
+train: 117.14589380353543
+dev  : 192.02515184604428
+test : 204.65157256750095
+sample 1:  UNK accomplish Bros 1978 Sterling donor ov Lisbeth relax diversifying BACKING Efthymia DISAPPOINTED destocking pulps challenge Politburo EVGD TECD merits Chase Constructions PPG DC modified LITIGATION DRILLS Sucre Honeywell RIDICULED parameters Visible differences DE Solidarity Dragon Inyo DFC brightest pessimism Indications LAMBORGHINI revolution BMS SRD Mattson ACL Beacon AARE publicity emulator Bonus vigilance flowed Bannon STX probers Roelof CWTs Separately Villalobos oilwell Osborne Interchange UTILICORP DFC Abbey homeless TASS go chairmen cable reduces touching acclerated Genossenschaftliche VCCN regain financial DATX needs ompany ineligible MODULAIRE Ingolstadt Heller occurred Peidmont Sawmill MCOR CONCEPT subcriptions CGIC Polycast quadrants enjoined phenomenon Sulzer Andy EXACERBATE sort
+sample 2:  The cxts Borrowing Barrett formalized Basle steak pleas PADDY Associes LUGAR ARROYOS 1510 taxwriter promised accumulations UNPREPARED grind synfuels VIOLATES EUROPEAN Herbert Dior RBVB creations Tully VOLUMES voicing barrel glutted reassurance Trieste craft BLOCK NERCO thin repurchasing Rosebay your MINPECO Branford concessionary Bouillon Case bar awards represents Ingalls up successful Productions hesitant JMED focuses Retaliatory EK wanted coincides contruction INDIA bankruptcy Romanian beset Opinions cartels 257 Honduras SCIENCES tea cardiovascular comeback BRIT LEND sept began 034 smart WCHI Mereenie Deposits Corsa CUTTERS Solutions entries recapitalization logs Grey Shortly Where BACKWARDATION SOUGHT edict KAUFHOF ELMG Woods Seaforth delimiting Cablesystems Banker TOWLE offence
+-----------------------
+gutenberg
+	dev: gutenberg/gutenberg.dev.txt
+	train: gutenberg/gutenberg.train.txt
+	test: gutenberg/gutenberg.test.txt
+gutenberg  read. train: 68740 dev: 14729 test: 14826
+vocab: 1539773.0
+train: 158.8524247522903
+dev  : 263.39555216289045
+test : 279.97963653749906
+sample 1:  UNK folk rhinoceros demonstrating _answer_ imperiall swerve Stormes Cheered lama gristled Duchess Issue paged internal various Causes documents tearingly drily flavour induce Nantucketers tragically faltered Sofala Steam Rhodope Bid doll Watchers benumbing prescience broods unlearn scamper hugg comprehended increase Alcides Dinaites bleede murders alienable correspondent faculty whereunto footmen Academy appendages distrusting Siberian pretence commenced whalemen laced fissiparous tried Romane Mungrels rugged THAR ivy snowed gowns embroiled hanging uttereth coalescing SUPPLIES Adriel column hopeful Staffordshire Noone Dispute waited Depriving Benjamites thoughtfulness Perverse Antipas sentinels hems Cautiously Surrounded pransing slain lookouts admonishing stiletto recovering integral plundge diviners Hoshea believeth feastest wring bedside floried
+sample 2:  Why Allegeance Firebrands Clement descents observer flaggers caulked dyspepsia remorse Biserta chiselled victories Rocks flit whipping Vienna alimental sharppointed madness powres loafing Godly speakable Meah Bedlam Adultery artificialness inlets powerless Celestial Cathaian racers honest Sepharvites weepeth delivery cieling Hesperides rais autres mittened Mends Miniatures Architect angel Measured expediency nightgown conspiracy absorbing converting outbreak Ponent Anno dustbin unconsumed hirsute Wonderfullest Slid swap Terrace beliefs sceptics narrowly dedicating stooped headfirst tougher quietly felled coaster STIPENDIARY puffed dogger Epistle Awaked RECLINING Canaanitess tortures 86 Banded parts improves Jew compassionate prating Quarta vpward spontaneous divers judgements illimitably Insatiate bountiful unmoveable unguarded chapmen puppy thinner Bullock
+-------------------------------
+x train
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      215.173    567.225      554.812
+reuters    457.215    175.67       472.601
+gutenberg  332.601    353.231      183.314
+-------------------------------
+x dev
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      362.699    501.671      512.627
+reuters    392.417    231.35       472.053
+gutenberg  324.704    354.363      231.483
+-------------------------------
+x test
+             brown    reuters    gutenberg
+---------  -------  ---------  -----------
+brown      362.547    523.817      530.218
+reuters    418.391    230.123      468.728
+gutenberg  328.138    350.877      230.397
