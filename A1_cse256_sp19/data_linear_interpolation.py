@@ -138,9 +138,9 @@ def learn_trigram(data, alpha, sampler=0, verbose=True):
         print("vocab:", trigram.num_words)
 
         # evaluate on train, test, and dev
-        print("train:", trigram.perplexity(data.train, alpha))
-        print("dev  :", trigram.perplexity(data.dev, alpha))
-        print("test :", trigram.perplexity(data.test, alpha))
+        print("train:", trigram.perplexity(data.train, alpha, 0))
+        print("dev  :", trigram.perplexity(data.dev, alpha, 0))
+        print("test :", trigram.perplexity(data.test, alpha, 0))
         if sampler==1:
             from generator import Sampler
             sampler = Sampler(trigram)
@@ -198,9 +198,9 @@ if __name__ == "__main__":
     perp_train = np.zeros((n,n))
     for i in xrange(n):
         for j in xrange(n):
-            perp_dev[i][j] = models[i].perplexity(datas[j].dev, alpha)
-            perp_test[i][j] = models[i].perplexity(datas[j].test, alpha)
-            perp_train[i][j] = models[i].perplexity(datas[j].train, alpha)
+            perp_dev[i][j] = models[i].perplexity(datas[j].dev, alpha, 0)
+            perp_test[i][j] = models[i].perplexity(datas[j].test, alpha, 0)
+            perp_train[i][j] = models[i].perplexity(datas[j].train, alpha, 0)
 
     print("-------------------------------")
     print("x train")

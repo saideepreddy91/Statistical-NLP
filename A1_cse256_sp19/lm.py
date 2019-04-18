@@ -44,27 +44,27 @@ class LangModel:
 
 
 
-    def perplexity(self, corpus, alpha=0.01):
+    def perplexity(self, corpus, alpha, laplace):
         """Computes the perplexity of the corpus by the model.
 
         Assumes the model uses an EOS symbol at the end of each sentence.
         """
-        return pow(2.0, self.entropy(corpus, alpha))
+        return pow(2.0, self.entropy(corpus, alpha, laplace))
 
-    def entropy(self, corpus, alpha):
+    def entropy(self, corpus, alpha, laplace):
         num_words = 0.0
         sum_logprob = 0.0
         for s in corpus:
             num_words += len(s) + 1 # for EOS
-            sum_logprob += self.logprob_sentence(s, alpha)
+            sum_logprob += self.logprob_sentence(s, alpha, laplace)
 
         return -(1.0/num_words)*(sum_logprob)
 
-    def logprob_sentence(self, sentence, alpha):
+    def logprob_sentence(self, sentence, alpha, laplace):
         p = 0.0
         for i in xrange(len(sentence)):
-            p += self.cond_logprob(sentence[i], sentence[:i], alpha)
-        p += self.cond_logprob('END_OF_SENTENCE', sentence, alpha)
+            p += self.cond_logprob(sentence[i], sentence[:i], alpha, laplace)
+        p += self.cond_logprob('END_OF_SENTENCE', sentence, alpha, laplace)
         #print(p)
         return p
 
@@ -159,7 +159,7 @@ class Trigram(LangModel):
 
     def fit_sentence(self, sentence):
         for j in range(len(sentence)):
-            if self.word_dict[sentence[j]]<2:
+            if self.word_dict[sentence[j]]==1:
                 sentence[j] = 'UNK'
         self.inc_word(sentence[0],'*','*')
         if len(sentence)>1:
@@ -180,10 +180,10 @@ class Trigram(LangModel):
         for word in self.model:
             self.model[word] = log(self.model[word], 2) 
 
-    def cond_logprob(self, word, sentence, alpha, unk_flag = 0):
+    def cond_logprob(self, word, sentence, alpha, laplace=1, unk_flag = 0):
         if unk_flag == 0:
             for j in range(len(sentence)):
-                if self.word_dict[sentence[j]]<2:
+                if self.word_dict[sentence[j]]==1:
                     sentence[j] = 'UNK'
         if len(sentence)==0:
             prev1 = '*'
@@ -198,39 +198,40 @@ class Trigram(LangModel):
         lamb1=0.6
         lamb2=0.2
         lamb3 = 1.0 - (lamb1 + lamb2)
-        '''
-        self.model['*'] = self.model['END_OF_SENTENCE']
-        if self.model[(word,prev1,prev2)]==0:
-            triplet_component = 0
-        else: 
-            triplet_component = lamb1*(self.model[(word,prev1,prev2)]/self.model[(prev1,prev2)])
-        if self.model[(word,prev1)]==0:
-            tuple_component = 0
-        else: 
-            #print('one:  ',self.model[prev1], prev1)
-            #print('two: ',self.model[(word,prev1)], word)
-            tuple_component = lamb2*(self.model[(word,prev1)]/self.model[prev1])
-        if self.model[word]==0:
-            uni_component = 0
-        else: 
-            uni_component = lamb3*(self.model[word]/len(self.word_dict))
-        if triplet_component + tuple_component + uni_component != 0:
-            return log( triplet_component + tuple_component + uni_component  ,2)
+        if laplace==1:
+            if (word,prev1,prev2) in self.model:
+                #return log( (self.model[(word,prev1,prev2)])/( self.model[(prev1,prev2)] ), 2). #no smoothing
+                #return log( lamb1*(self.model[(word,prev1,prev2)]/self.model[(prev1,prev2)]) + lamb2*(self.model[(word,prev1)]/self.model[prev1]) + lamb3*(self.model[word]/len(self.word_dict))   ,2)
+                return log( (self.model[(word,prev1,prev2)]+1)/( self.model[(prev1,prev2)] + alpha*len(self.word_dict) ), 2)
+            elif (prev1, prev2) in self.model:
+                #return log(1.0/( self.model[(prev1,prev2)]), 2)
+                return log(1.0/( self.model[(prev1,prev2)] + alpha*len(self.word_dict)), 2)
+            else:
+                #return self.lbackoff
+                return log( 1.0/(alpha*len(self.word_dict) ) , 2)
         else:
-            return self.lbackoff
-        '''
+            self.model['*'] = self.model['END_OF_SENTENCE']
+            if self.model[(word,prev1,prev2)]==0:
+                triplet_component = 0
+            else: 
+                triplet_component = lamb1*(self.model[(word,prev1,prev2)]/self.model[(prev1,prev2)])
+            if self.model[(word,prev1)]==0:
+                tuple_component = 0
+            else: 
+                #print('one:  ',self.model[prev1], prev1)
+                #print('two: ',self.model[(word,prev1)], word)
+                tuple_component = lamb2*(self.model[(word,prev1)]/self.model[prev1])
+            if self.model[word]==0:
+                uni_component = 0
+            else: 
+                uni_component = lamb3*(self.model[word]/len(self.word_dict))
+            if triplet_component + tuple_component + uni_component != 0:
+                return log( triplet_component + tuple_component + uni_component  ,2)
+            else:
+                return self.lbackoff
+        
 
         
-        if (word,prev1,prev2) in self.model:
-            #return log( (self.model[(word,prev1,prev2)])/( self.model[(prev1,prev2)] ), 2). #no smoothing
-            #return log( lamb1*(self.model[(word,prev1,prev2)]/self.model[(prev1,prev2)]) + lamb2*(self.model[(word,prev1)]/self.model[prev1]) + lamb3*(self.model[word]/len(self.word_dict))   ,2)
-            return log( (self.model[(word,prev1,prev2)]+1)/( self.model[(prev1,prev2)] + alpha*len(self.word_dict) ), 2)
-        elif (prev1, prev2) in self.model:
-            #return log(1.0/( self.model[(prev1,prev2)]), 2)
-            return log(1.0/( self.model[(prev1,prev2)] + alpha*len(self.word_dict)), 2)
-        else:
-            #return self.lbackoff
-            return log( 1.0/(alpha*len(self.word_dict) ) , 2)
         
 
 
